@@ -1,0 +1,23 @@
+﻿@using DevExpress.AspNetCore
+@using Microsoft.AspNetCore.Http
+@using ReportCatalog.Models
+@inject IHttpContextAccessor httpContextAccessor
+
+<link rel="stylesheet" href="~/css/viewer.part.bundle.css" />
+<link rel="stylesheet" href="~/css/designer.part.bundle.css" />
+<script src="~/js/viewer.part.bundle.js"></script>
+<script src="~/js/designer.part.bundle.js"></script>
+
+@{
+    DesignerTask ADT = httpContextAccessor.HttpContext.Session.Get<DesignerTask>("DesignerTask");
+    
+    if (ADT.mode == ReportEdditingMode.NewReport)
+    {
+        @Html.DevExpress().ReportDesigner("reportDesigner").Height("1000px").Bind(new DevExpress.XtraReports.UI.XtraReport());
+    }
+    else
+    {
+        @Html.DevExpress().ReportDesigner("reportDesigner").Height("1000px").Bind(ADT.reportID.ToString());
+
+    }
+}

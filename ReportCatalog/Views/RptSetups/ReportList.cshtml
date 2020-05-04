@@ -1,0 +1,29 @@
+﻿@model ReportCatalog.Models.RptSetup
+
+@{
+    ViewData["Title"] = "ReportList";
+}
+
+<h1>Report List</h1>
+
+<h4>RptSetup</h4>
+<p>Use the form below to manage reports in the catalog.</p>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditReport">
+            <div>
+                <select asp-for="Id" asp-items="ViewBag.ReportId" size="10" multiple class="form-control"></select>
+            </div>
+            <div>
+                <input type="submit" value="View Report" class="btn btn-info form-control" formaction="ViewReport" formmethod="post" />
+                <input type="submit" value="Edit Report" class="btn btn-primary form-control" />
+                <input type="submit" value="Delete Report" class="btn btn-danger form-control" formaction="DeleteReport" formmethod="post" />
+            </div>
+            <hr />
+            <div>
+                <a asp-controller="RptSetups" asp-action="NewReport" class="btn btn-success form-control">New Report</a>
+            </div>
+        </form>
+    </div>
+</div>

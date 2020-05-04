@@ -1,0 +1,12 @@
+﻿@using DevExpress.AspNetCore
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor httpContextAccessor
+
+<link rel="stylesheet" href="~/css/viewer.part.bundle.css" />
+<script src="~/js/viewer.part.bundle.js"></script>
+
+@{
+    DesignerTask ADT = httpContextAccessor.HttpContext.Session.Get<DesignerTask>("DesignerTask");
+
+    @Html.DevExpress().WebDocumentViewer("DocumentViewer").Height("1000px").Bind(ADT.reportID.ToString());
+}
